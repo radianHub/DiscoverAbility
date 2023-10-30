@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <decisions>
+        <name>Has_Case_ID</name>
+        <label>Has Case ID?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Update_Name_CloseDate2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Account.Case_Id__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Name_CloseDate</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Has_Service_Start_Date</name>
+        <label>Has Service Start Date?</label>
+        <locationX>182</locationX>
+        <locationY>587</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Service_Start_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Stage</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>CloseDate</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.CreatedDate} + 365</expression>
+    </formulas>
+    <formulas>
+        <name>ServiceNamingConventionCaseId</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+           {!$Record.RecordType.Name},
+           &apos;Placement&apos;, 
+           CASE(
+                      {!$Record.Type},
+                      &apos;DBS Supported Employment&apos;, &apos;DSE&apos;,
+                      &apos;DBS OTJ&apos;, &apos;DOTJ&apos;,
+                      &apos;DBS Employment Service&apos;, &apos;DES&apos;,
+                      &apos;Employment Service&apos;, &apos;ES&apos;,
+                      &apos;Job Coaching&apos;, &apos;JC&apos;,
+                      &apos;OJT&apos;, &apos;OJT&apos;,
+                      &apos;Supported Employment&apos;, &apos;SE&apos;,
+                      &apos;WBLE&apos;, &apos;WB&apos;,
+                      &apos;&apos;
+           ),
+           &apos;Evaluation&apos;,
+           CASE(
+                      {!$Record.Type},
+                      &apos;Discovery&apos;, &apos;D&apos;,
+                      &apos;MHC&apos;, &apos;MHC&apos;,
+                      &apos;Psychological Evaluation&apos;, &apos;PE&apos;,
+                      &apos;Vocational Evaluation&apos;, &apos;VE&apos;,
+                      &apos;&apos;
+           ),
+           &apos;Training&apos; ,
+           CASE(
+                      {!$Record.Type},
+                      &apos;Career Camp&apos;, &apos;CC&apos;,
+                      &apos;Pre-Placement Training&apos;,&apos;PPT&apos;,
+                      &apos;Self Advocacy&apos;,&apos;SA&apos;,
+                      &apos;Peer Mentoring&apos;,&apos;PM&apos;,
+                      &apos;&apos;
+           ),
+&apos;&apos;) + &apos;_&apos; + {!$Record.Account.Case_Id__c} + &apos;_&apos; 
++ CASE(
+           MONTH(Today()),
+           1, &quot;January&quot;,
+           2, &quot;February&quot;,
+           3, &quot;March&quot;, 
+           4, &quot;April&quot;, 
+           5, &quot;May&quot;, 
+           6, &quot;June&quot;,
+           7, &quot;July&quot;,
+           8, &quot;August&quot;,
+           9, &quot;September&quot;,
+           10, &quot;October&quot;,
+           11, &quot;November&quot;,
+           12, &quot;December&quot;,
+           &quot;None&quot;
+) + &apos;_&apos; +TEXT(Year(Today()))</expression>
+    </formulas>
+    <formulas>
+        <name>ServiceNamingConventionVRCode</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+           {!$Record.RecordType.Name},
+           &apos;Placement&apos;, 
+           CASE(
+                      {!$Record.Type},
+                      &apos;DBS Supported Employment&apos;, &apos;DSE&apos;,
+                      &apos;DBS OTJ&apos;, &apos;DOTJ&apos;,
+                      &apos;DBS Employment Service&apos;, &apos;DES&apos;,
+                      &apos;Employment Service&apos;, &apos;ES&apos;,
+                      &apos;Job Coaching&apos;, &apos;JC&apos;,
+                      &apos;OJT&apos;, &apos;OJT&apos;,
+                      &apos;Supported Employment&apos;, &apos;SE&apos;,
+                      &apos;WBLE&apos;, &apos;WB&apos;,
+                      &apos;&apos;
+           ),
+           &apos;Evaluation&apos;,
+           CASE(
+                      {!$Record.Type},
+                      &apos;Discovery&apos;, &apos;D&apos;,
+                      &apos;MHC&apos;, &apos;MHC&apos;,
+                      &apos;Psychological Evaluation&apos;, &apos;PE&apos;,
+                      &apos;Vocational Evaluation&apos;, &apos;VE&apos;,
+                      &apos;&apos;
+           ),
+           &apos;Training&apos; ,
+           CASE(
+                      {!$Record.Type},
+                      &apos;Career Camp&apos;, &apos;CC&apos;,
+                      &apos;Pre-Placement Training&apos;, &apos;PPT&apos;,
+                      &apos;Self Advocacy&apos;, &apos;SA&apos;,
+                      &apos;Peer Mentoring&apos;,&apos;PM&apos;,
+                      &apos;&apos;
+           ),
+           &apos;&apos;
+) + &apos;_&apos; + {!$Record.Account.VR_code__c} + &apos;_&apos; 
++ CASE(
+           MONTH(Today()),
+           1, &quot;January&quot;,
+           2, &quot;February&quot;,
+           3, &quot;March&quot;, 
+           4, &quot;April&quot;, 
+           5, &quot;May&quot;, 
+           6, &quot;June&quot;,
+           7, &quot;July&quot;,
+           8, &quot;August&quot;,
+           9, &quot;September&quot;,
+           10, &quot;October&quot;,
+           11, &quot;November&quot;,
+           12, &quot;December&quot;,
+           &quot;None&quot;
+) + &apos;_&apos; + TEXT(Year(Today()))</expression>
+    </formulas>
+    <interviewLabel>Service - Before Insert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Service - Before Insert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Name_CloseDate</name>
+        <label>Update Name/CloseDate</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <connector>
+            <targetReference>Has_Service_Start_Date</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>CloseDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>ServiceNamingConventionCaseId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Name_CloseDate2</name>
+        <label>Update Name/CloseDate</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <connector>
+            <targetReference>Has_Service_Start_Date</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CloseDate</field>
+            <value>
+                <elementReference>CloseDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>ServiceNamingConventionVRCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Stage</name>
+        <label>Update Stage</label>
+        <locationX>50</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>In-Service</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Has_Case_ID</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
