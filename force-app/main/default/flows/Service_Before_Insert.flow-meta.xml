@@ -52,7 +52,7 @@
     <formulas>
         <name>CloseDate</name>
         <dataType>Date</dataType>
-        <expression>{!$Record.CreatedDate} + 365</expression>
+        <expression>Today() + 365</expression>
     </formulas>
     <formulas>
         <name>ServiceNamingConventionCaseId</name>
