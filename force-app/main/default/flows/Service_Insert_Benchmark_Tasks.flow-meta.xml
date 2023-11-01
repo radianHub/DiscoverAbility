@@ -18,6 +18,38 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Add_to_Collection10</name>
+        <label>Add to Collection</label>
+        <locationX>1370</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>TasksToInsert</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Benchmark45DayTask</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_90_Day_Task2</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_to_Collection11</name>
+        <label>Add to Collection</label>
+        <locationX>1370</locationX>
+        <locationY>866</locationY>
+        <assignmentItems>
+            <assignToReference>TasksToInsert</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Benchmark90DayTask</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Insert_Tasks</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Add_to_Collection2</name>
         <label>Add to Collection</label>
         <locationX>50</locationX>
@@ -454,6 +486,50 @@
         </connector>
     </assignments>
     <assignments>
+        <name>X45_Day_Task</name>
+        <label>45 Day Task</label>
+        <locationX>1370</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>Benchmark45DayTask.Subject</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Benchmark Due - 45 Day</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark45DayTask.ActivityDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ServiceRecord.X45_Day__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark45DayTask.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Not Started</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark45DayTask.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ServiceRecord.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark45DayTask.WhatId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ServiceRecord.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Collection10</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>X60_Day_Task</name>
         <label>60 Day Task</label>
         <locationX>50</locationX>
@@ -541,6 +617,50 @@
             <targetReference>Add_to_Collection3</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>X90_Day_Task2</name>
+        <label>90 Day Task</label>
+        <locationX>1370</locationX>
+        <locationY>758</locationY>
+        <assignmentItems>
+            <assignToReference>Benchmark90DayTask.Subject</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Benchmark Due - 90 Day</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark90DayTask.ActivityDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ServiceRecord.X90_day__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark90DayTask.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Not Started</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark90DayTask.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ServiceRecord.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark90DayTask.WhatId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ServiceRecord.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Collection11</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Create_30_Day_Task</name>
         <label>Create 30 Day Task?</label>
@@ -620,6 +740,45 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Create_45_Day_Task</name>
+        <label>Create 45 Day Task?</label>
+        <locationX>1502</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Create_90_Day_Task2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes10</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>ServiceRecord.X45_Day__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>PriorServiceRecord.X45_Day__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>PriorServiceRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>X45_Day_Task</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Create_60_Day_Task</name>
         <label>Create 60 Day Task?</label>
         <locationX>182</locationX>
@@ -693,6 +852,45 @@
             </conditions>
             <connector>
                 <targetReference>X90_Day_Task</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Create_90_Day_Task2</name>
+        <label>Create 90 Day Task?</label>
+        <locationX>1502</locationX>
+        <locationY>650</locationY>
+        <defaultConnector>
+            <targetReference>Insert_Tasks</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes11</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference>ServiceRecord.X90_day__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>PriorServiceRecord.X90_day__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>PriorServiceRecord</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>X90_Day_Task2</targetReference>
             </connector>
             <label>Yes</label>
         </rules>
@@ -895,7 +1093,7 @@
     <decisions>
         <name>Service_Type</name>
         <label>Service Type?</label>
-        <locationX>776</locationX>
+        <locationX>996</locationX>
         <locationY>134</locationY>
         <defaultConnector>
             <targetReference>Insert_Tasks</targetReference>
@@ -953,6 +1151,35 @@
             </connector>
             <label>OJT/WBLE</label>
         </rules>
+        <rules>
+            <name>DBS</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>ServiceRecord.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DBS Employment Service</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ServiceRecord.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DBS Supported Employment</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>ServiceRecord.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>DBS OTJ</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_45_Day_Task</targetReference>
+            </connector>
+            <label>DBS</label>
+        </rules>
     </decisions>
     <environments>Default</environments>
     <interviewLabel>Service - Create Benchmark Tasks {!$Flow.CurrentDateTime}</interviewLabel>
@@ -979,12 +1206,12 @@
     <recordCreates>
         <name>Insert_Tasks</name>
         <label>Insert Tasks</label>
-        <locationX>776</locationX>
+        <locationX>996</locationX>
         <locationY>1958</locationY>
         <inputReference>TasksToInsert</inputReference>
     </recordCreates>
     <start>
-        <locationX>650</locationX>
+        <locationX>870</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Service_Type</targetReference>
@@ -993,6 +1220,14 @@
     <status>Active</status>
     <variables>
         <name>Benchmark30DayTask</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Task</objectType>
+    </variables>
+    <variables>
+        <name>Benchmark45DayTask</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

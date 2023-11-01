@@ -20,7 +20,7 @@
     <assignments>
         <name>Assign_BenchmarkName2</name>
         <label>Assign BenchmarkName</label>
-        <locationX>314</locationX>
+        <locationX>578</locationX>
         <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkName</assignToReference>
@@ -36,7 +36,7 @@
     <assignments>
         <name>Assign_BenchmarkName3</name>
         <label>Assign BenchmarkName</label>
-        <locationX>578</locationX>
+        <locationX>842</locationX>
         <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkName</assignToReference>
@@ -52,7 +52,7 @@
     <assignments>
         <name>Assign_BenchmarkName4</name>
         <label>Assign BenchmarkName</label>
-        <locationX>842</locationX>
+        <locationX>1106</locationX>
         <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkName</assignToReference>
@@ -68,7 +68,7 @@
     <assignments>
         <name>Assign_BenchmarkName5</name>
         <label>Assign BenchmarkName</label>
-        <locationX>1106</locationX>
+        <locationX>1370</locationX>
         <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkName</assignToReference>
@@ -84,7 +84,7 @@
     <assignments>
         <name>Assign_BenchmarkName6</name>
         <label>Assign BenchmarkName</label>
-        <locationX>1370</locationX>
+        <locationX>1634</locationX>
         <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkName</assignToReference>
@@ -100,7 +100,7 @@
     <assignments>
         <name>Assign_BenchmarkName7</name>
         <label>Assign BenchmarkName</label>
-        <locationX>1634</locationX>
+        <locationX>1898</locationX>
         <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkName</assignToReference>
@@ -116,7 +116,7 @@
     <assignments>
         <name>Assign_BenchmarkName8</name>
         <label>Assign BenchmarkName</label>
-        <locationX>1898</locationX>
+        <locationX>2162</locationX>
         <locationY>611</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkName</assignToReference>
@@ -129,10 +129,26 @@
             <targetReference>Get_Related_Benchmark_Task</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Copy_1_of_Assign_BenchmarkName</name>
+        <label>Copy 1 of Assign BenchmarkName</label>
+        <locationX>314</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>BenchmarkName</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>45 Day</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Related_Benchmark_Task</targetReference>
+        </connector>
+    </assignments>
     <customErrors>
         <name>SubmittedBenchmarkError</name>
         <label>SubmittedBenchmarkError</label>
-        <locationX>974</locationX>
+        <locationX>1106</locationX>
         <locationY>1019</locationY>
         <customErrorMessages>
             <errorMessage>The related benchmark must be submitted before the task can be marked as complete</errorMessage>
@@ -143,7 +159,7 @@
     <decisions>
         <name>Benchmark_Task</name>
         <label>Benchmark Task?</label>
-        <locationX>1722</locationX>
+        <locationX>1920</locationX>
         <locationY>395</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -165,7 +181,7 @@
     <decisions>
         <name>Has_Benchmark_Been_Submitted</name>
         <label>Has Benchmark Been Submitted?</label>
-        <locationX>1106</locationX>
+        <locationX>1238</locationX>
         <locationY>911</locationY>
         <defaultConnectorLabel>Yes</defaultConnectorLabel>
         <rules>
@@ -194,7 +210,7 @@
     <decisions>
         <name>Status</name>
         <label>Status?</label>
-        <locationX>2162</locationX>
+        <locationX>2393</locationX>
         <locationY>287</locationY>
         <defaultConnectorLabel>Other</defaultConnectorLabel>
         <rules>
@@ -217,7 +233,7 @@
     <decisions>
         <name>Subject</name>
         <label>Subject?</label>
-        <locationX>1106</locationX>
+        <locationX>1238</locationX>
         <locationY>503</locationY>
         <defaultConnector>
             <targetReference>Get_Related_Benchmark_Task</targetReference>
@@ -237,6 +253,21 @@
                 <targetReference>Assign_BenchmarkName</targetReference>
             </connector>
             <label>Benchmark Due - 30 Day</label>
+        </rules>
+        <rules>
+            <name>Benchmark_Due_45_Day</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Subject</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Benchmark Due - 45 Day</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_1_of_Assign_BenchmarkName</targetReference>
+            </connector>
+            <label>Benchmark Due - 45 Day</label>
         </rules>
         <rules>
             <name>Benchmark_Due_60_Day</name>
@@ -369,7 +400,7 @@
     <recordLookups>
         <name>Get_Related_Benchmark_Task</name>
         <label>Get Related Benchmark Task</label>
-        <locationX>1106</locationX>
+        <locationX>1238</locationX>
         <locationY>803</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -395,7 +426,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>2036</locationX>
+        <locationX>2267</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Status</targetReference>

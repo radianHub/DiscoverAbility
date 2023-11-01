@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <decisions>
+        <name>Employment_Service_with_Start_Date</name>
+        <label>Employment Service with Start Date?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Employment Service</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Service_Start_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Insert_Service_Dates</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>Day30Date</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Service_Start_Date__c} +29</expression>
+    </formulas>
+    <formulas>
+        <name>Day45Date</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.X45_Day__c} +44</expression>
+    </formulas>
+    <formulas>
+        <name>Day60Date</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Service_Start_Date__c} + 59</expression>
+    </formulas>
+    <formulas>
+        <name>Day90Date</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Service_Start_Date__c}  + 89</expression>
+    </formulas>
+    <interviewLabel>Service-Placement: Insert Service Dates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Service-Placement: Insert Service Dates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Insert_Service_Dates</name>
+        <label>Insert Service Dates</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <inputAssignments>
+            <field>X30_day__c</field>
+            <value>
+                <elementReference>Day30Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>X60_day__c</field>
+            <value>
+                <elementReference>Day60Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>X90_day__c</field>
+            <value>
+                <elementReference>Day90Date</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Employment_Service_with_Start_Date</targetReference>
+        </connector>
+        <object>Opportunity</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>
