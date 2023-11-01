@@ -2,13 +2,39 @@
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>59.0</apiVersion>
     <decisions>
-        <name>Has_Service_Start_Date</name>
-        <label>Has Service Start Date?</label>
+        <name>Set_Stabilization_Date</name>
+        <label>Set Stabilization Date?</label>
         <locationX>182</locationX>
-        <locationY>287</locationY>
+        <locationY>1019</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Stabilization_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Transition_Employment_Outcome</targetReference>
+            </connector>
+            <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Update_Status</name>
+        <label>Update Status?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Set_Stabilization_Date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>In_Service</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>$Record.Service_Start_Date__c</leftValueReference>
@@ -21,10 +47,40 @@
                 <targetReference>Update_Stage</targetReference>
             </connector>
             <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
-            <label>Yes</label>
+            <label>In-Service</label>
         </rules>
     </decisions>
     <environments>Default</environments>
+    <formulas>
+        <name>Date30Day</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Service_Start_Date__c} + 30</expression>
+    </formulas>
+    <formulas>
+        <name>Date45Day</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Service_Start_Date__c} + 45</expression>
+    </formulas>
+    <formulas>
+        <name>Date60Day</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Service_Start_Date__c} + 60</expression>
+    </formulas>
+    <formulas>
+        <name>Date90Day</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Service_Start_Date__c} + 90</expression>
+    </formulas>
+    <formulas>
+        <name>DateEmploymentOutcome</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Stabilization_Date__c} + 150</expression>
+    </formulas>
+    <formulas>
+        <name>DateTransition</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Stabilization_Date__c} + 60</expression>
+    </formulas>
     <interviewLabel>Service - Before Update {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Service - Before Update</label>
     <processMetadataValues>
@@ -47,10 +103,77 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordUpdates>
+        <name>Update_30_Day</name>
+        <label>Update 30 Day</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <connector>
+            <targetReference>Update_45_Day</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>X30_day__c</field>
+            <value>
+                <elementReference>Date30Day</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_45_Day</name>
+        <label>Update 45 Day</label>
+        <locationX>50</locationX>
+        <locationY>611</locationY>
+        <connector>
+            <targetReference>Update_60_Day</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>X45_Day__c</field>
+            <value>
+                <elementReference>Date45Day</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_60_Day</name>
+        <label>Update 60 Day</label>
+        <locationX>50</locationX>
+        <locationY>719</locationY>
+        <connector>
+            <targetReference>Update_90_Day</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>X60_day__c</field>
+            <value>
+                <elementReference>Date60Day</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_90_Day</name>
+        <label>Update 90 Day</label>
+        <locationX>50</locationX>
+        <locationY>827</locationY>
+        <connector>
+            <targetReference>Set_Stabilization_Date</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>X90_day__c</field>
+            <value>
+                <elementReference>Date90Day</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Stage</name>
         <label>Update Stage</label>
         <locationX>50</locationX>
         <locationY>395</locationY>
+        <connector>
+            <targetReference>Update_30_Day</targetReference>
+        </connector>
         <inputAssignments>
             <field>StageName</field>
             <value>
@@ -59,11 +182,30 @@
         </inputAssignments>
         <inputReference>$Record</inputReference>
     </recordUpdates>
+    <recordUpdates>
+        <name>Update_Transition_Employment_Outcome</name>
+        <label>Update Transition/Employment Outcome</label>
+        <locationX>50</locationX>
+        <locationY>1127</locationY>
+        <inputAssignments>
+            <field>Employment_Outcome_Date__c</field>
+            <value>
+                <elementReference>DateEmploymentOutcome</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Transition_Date__c</field>
+            <value>
+                <elementReference>DateTransition</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
     <start>
         <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Has_Service_Start_Date</targetReference>
+            <targetReference>Update_Status</targetReference>
         </connector>
         <object>Opportunity</object>
         <recordTriggerType>Update</recordTriggerType>
