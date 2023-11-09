@@ -5,7 +5,7 @@
         <name>Add_to_Collection</name>
         <label>Add to Collection</label>
         <locationX>50</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -21,7 +21,7 @@
         <name>Add_to_Collection10</name>
         <label>Add to Collection</label>
         <locationX>1370</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -37,7 +37,7 @@
         <name>Add_to_Collection11</name>
         <label>Add to Collection</label>
         <locationX>1370</locationX>
-        <locationY>866</locationY>
+        <locationY>974</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -53,7 +53,7 @@
         <name>Add_to_Collection2</name>
         <label>Add to Collection</label>
         <locationX>50</locationX>
-        <locationY>866</locationY>
+        <locationY>974</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -69,7 +69,7 @@
         <name>Add_to_Collection3</name>
         <label>Add to Collection</label>
         <locationX>50</locationX>
-        <locationY>1274</locationY>
+        <locationY>1382</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -85,7 +85,7 @@
         <name>Add_to_Collection4</name>
         <label>Add to Collection</label>
         <locationX>490</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -101,7 +101,7 @@
         <name>Add_to_Collection5</name>
         <label>Add to Collection</label>
         <locationX>490</locationX>
-        <locationY>866</locationY>
+        <locationY>974</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -117,7 +117,7 @@
         <name>Add_to_Collection6</name>
         <label>Add to Collection</label>
         <locationX>490</locationX>
-        <locationY>1274</locationY>
+        <locationY>1382</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -133,7 +133,7 @@
         <name>Add_to_Collection7</name>
         <label>Add to Collection</label>
         <locationX>930</locationX>
-        <locationY>866</locationY>
+        <locationY>974</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -149,7 +149,7 @@
         <name>Add_to_Collection8</name>
         <label>Add to Collection</label>
         <locationX>490</locationX>
-        <locationY>1682</locationY>
+        <locationY>1790</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -165,7 +165,7 @@
         <name>Add_to_Collection9</name>
         <label>Add to Collection</label>
         <locationX>930</locationX>
-        <locationY>458</locationY>
+        <locationY>566</locationY>
         <assignmentItems>
             <assignToReference>TasksToInsert</assignToReference>
             <operator>Add</operator>
@@ -181,7 +181,7 @@
         <name>Agreement_Task</name>
         <label>Agreement Task</label>
         <locationX>930</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkAgreementTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -217,6 +217,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>BenchmarkAgreementTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection9</targetReference>
         </connector>
@@ -225,7 +232,7 @@
         <name>Employment_Outcome_Task</name>
         <label>Employment Outcome Task</label>
         <locationX>490</locationX>
-        <locationY>1574</locationY>
+        <locationY>1682</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkEmploymentOutcomeTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -261,6 +268,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>BenchmarkEmploymentOutcomeTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection8</targetReference>
         </connector>
@@ -269,7 +283,7 @@
         <name>Final_Report_Task</name>
         <label>Final Report Task</label>
         <locationX>930</locationX>
-        <locationY>758</locationY>
+        <locationY>866</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkFinalReportTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -305,6 +319,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>BenchmarkFinalReportTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection7</targetReference>
         </connector>
@@ -313,7 +334,7 @@
         <name>Stabilization_Task</name>
         <label>Stabilization Task</label>
         <locationX>490</locationX>
-        <locationY>758</locationY>
+        <locationY>866</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkStabilizationTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -349,6 +370,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>BenchmarkStabilizationTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection5</targetReference>
         </connector>
@@ -357,7 +385,7 @@
         <name>Transition_Task</name>
         <label>Transition Task</label>
         <locationX>490</locationX>
-        <locationY>1166</locationY>
+        <locationY>1274</locationY>
         <assignmentItems>
             <assignToReference>BenchmarkTransitionTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -393,6 +421,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>BenchmarkTransitionTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection6</targetReference>
         </connector>
@@ -401,7 +436,7 @@
         <name>X30_Day_Task</name>
         <label>30 Day Task</label>
         <locationX>50</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>Benchmark30DayTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -435,6 +470,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>ServiceRecord.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark30DayTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -445,7 +487,7 @@
         <name>X30_Day_Task2</name>
         <label>30 Day Task</label>
         <locationX>490</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>Benchmark30DayTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -481,6 +523,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark30DayTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection4</targetReference>
         </connector>
@@ -489,7 +538,7 @@
         <name>X45_Day_Task</name>
         <label>45 Day Task</label>
         <locationX>1370</locationX>
-        <locationY>350</locationY>
+        <locationY>458</locationY>
         <assignmentItems>
             <assignToReference>Benchmark45DayTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -525,6 +574,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark45DayTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection10</targetReference>
         </connector>
@@ -533,7 +589,7 @@
         <name>X60_Day_Task</name>
         <label>60 Day Task</label>
         <locationX>50</locationX>
-        <locationY>758</locationY>
+        <locationY>866</locationY>
         <assignmentItems>
             <assignToReference>Benchmark60DayTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -569,6 +625,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark60DayTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection2</targetReference>
         </connector>
@@ -577,7 +640,7 @@
         <name>X90_Day_Task</name>
         <label>90 Day Task</label>
         <locationX>50</locationX>
-        <locationY>1166</locationY>
+        <locationY>1274</locationY>
         <assignmentItems>
             <assignToReference>Benchmark90DayTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -611,6 +674,13 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>ServiceRecord.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark90DayTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -621,7 +691,7 @@
         <name>X90_Day_Task2</name>
         <label>90 Day Task</label>
         <locationX>1370</locationX>
-        <locationY>758</locationY>
+        <locationY>866</locationY>
         <assignmentItems>
             <assignToReference>Benchmark90DayTask.Subject</assignToReference>
             <operator>Assign</operator>
@@ -657,6 +727,13 @@
                 <elementReference>ServiceRecord.Id</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Benchmark90DayTask.WhoId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Contact.Id</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Add_to_Collection11</targetReference>
         </connector>
@@ -665,7 +742,7 @@
         <name>Create_30_Day_Task</name>
         <label>Create 30 Day Task?</label>
         <locationX>182</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Create_60_Day_Task</targetReference>
         </defaultConnector>
@@ -704,7 +781,7 @@
         <name>Create_30_Day_Task2</name>
         <label>Create 30 Day Task?</label>
         <locationX>622</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Create_Stabilization_Task</targetReference>
         </defaultConnector>
@@ -743,7 +820,7 @@
         <name>Create_45_Day_Task</name>
         <label>Create 45 Day Task?</label>
         <locationX>1502</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Create_90_Day_Task2</targetReference>
         </defaultConnector>
@@ -782,7 +859,7 @@
         <name>Create_60_Day_Task</name>
         <label>Create 60 Day Task?</label>
         <locationX>182</locationX>
-        <locationY>650</locationY>
+        <locationY>758</locationY>
         <defaultConnector>
             <targetReference>Create_90_Day_Task</targetReference>
         </defaultConnector>
@@ -821,7 +898,7 @@
         <name>Create_90_Day_Task</name>
         <label>Create 90 Day Task?</label>
         <locationX>182</locationX>
-        <locationY>1058</locationY>
+        <locationY>1166</locationY>
         <defaultConnector>
             <targetReference>Insert_Tasks</targetReference>
         </defaultConnector>
@@ -860,7 +937,7 @@
         <name>Create_90_Day_Task2</name>
         <label>Create 90 Day Task?</label>
         <locationX>1502</locationX>
-        <locationY>650</locationY>
+        <locationY>758</locationY>
         <defaultConnector>
             <targetReference>Insert_Tasks</targetReference>
         </defaultConnector>
@@ -899,7 +976,7 @@
         <name>Create_Agreement_Task</name>
         <label>Create Agreement Task?</label>
         <locationX>1062</locationX>
-        <locationY>242</locationY>
+        <locationY>350</locationY>
         <defaultConnector>
             <targetReference>Create_Final_Report_Task</targetReference>
         </defaultConnector>
@@ -938,7 +1015,7 @@
         <name>Create_Final_Report_Task</name>
         <label>Create Final Report Task?</label>
         <locationX>1062</locationX>
-        <locationY>650</locationY>
+        <locationY>758</locationY>
         <defaultConnector>
             <targetReference>Insert_Tasks</targetReference>
         </defaultConnector>
@@ -977,7 +1054,7 @@
         <name>Create_Stabilization_Task</name>
         <label>Create Stabilization Task?</label>
         <locationX>622</locationX>
-        <locationY>650</locationY>
+        <locationY>758</locationY>
         <defaultConnector>
             <targetReference>Create_Transition_Task</targetReference>
         </defaultConnector>
@@ -1016,7 +1093,7 @@
         <name>Create_Transition_Task</name>
         <label>Create Transition Task?</label>
         <locationX>622</locationX>
-        <locationY>1058</locationY>
+        <locationY>1166</locationY>
         <defaultConnector>
             <targetReference>Employment_Services_Task</targetReference>
         </defaultConnector>
@@ -1055,7 +1132,7 @@
         <name>Employment_Services_Task</name>
         <label>Employment Services Task?</label>
         <locationX>622</locationX>
-        <locationY>1466</locationY>
+        <locationY>1574</locationY>
         <defaultConnector>
             <targetReference>Insert_Tasks</targetReference>
         </defaultConnector>
@@ -1094,7 +1171,7 @@
         <name>Service_Type</name>
         <label>Service Type?</label>
         <locationX>996</locationX>
-        <locationY>134</locationY>
+        <locationY>242</locationY>
         <defaultConnector>
             <targetReference>Insert_Tasks</targetReference>
         </defaultConnector>
@@ -1207,14 +1284,35 @@
         <name>Insert_Tasks</name>
         <label>Insert Tasks</label>
         <locationX>996</locationX>
-        <locationY>1958</locationY>
+        <locationY>2066</locationY>
         <inputReference>TasksToInsert</inputReference>
     </recordCreates>
+    <recordLookups>
+        <name>Get_Contact</name>
+        <label>Get Contact</label>
+        <locationX>996</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Service_Type</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>AccountId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>ServiceRecord.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Contact</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
     <start>
         <locationX>870</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Service_Type</targetReference>
+            <targetReference>Get_Contact</targetReference>
         </connector>
     </start>
     <status>Active</status>
