@@ -62,6 +62,13 @@
                 <elementReference>$Record.ProductCode</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>existingBenchmark.Order__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Product2.Order__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Update_Existing_Benchmark</targetReference>
         </connector>
@@ -147,6 +154,12 @@
             <field>Opportunity__c</field>
             <value>
                 <elementReference>$Record.Opportunity.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Order__c</field>
+            <value>
+                <elementReference>$Record.Product2.Order__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -268,7 +281,7 @@
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>existingBenchmark</name>
         <dataType>SObject</dataType>
