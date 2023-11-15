@@ -5,7 +5,7 @@
         <name>Assign_Task_Count</name>
         <label>Assign Task Count</label>
         <locationX>182</locationX>
-        <locationY>839</locationY>
+        <locationY>1547</locationY>
         <assignmentItems>
             <assignToReference>NumberOfOpenBenchmarkTasks</assignToReference>
             <operator>AssignCount</operator>
@@ -17,11 +17,61 @@
             <targetReference>Has_Open_Benchmark_Tasks</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <description>For all open child Benchmark records, set the OwnerId to the Opportunity OwnerId.</description>
+        <name>Set_Benchmark_Owner_to_Opportunity_Owner</name>
+        <label>Set Benchmark Owner to Opportunity Owner</label>
+        <locationX>468</locationX>
+        <locationY>647</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_Through_Benchmarks.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Collection_Benchmarks_To_Update</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Through_Benchmarks</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Benchmarks</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description>Check if the Opportunity owner has changed.</description>
+        <name>Did_Opportunity_Owner_Change</name>
+        <label>Did Opportunity Owner Change?</label>
+        <locationX>512</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Insert_Benchmark_Tasks</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Record Owner Did not Change</defaultConnectorLabel>
+        <rules>
+            <name>Opportunity_Owner_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Open_Child_Benchmark_Records</targetReference>
+            </connector>
+            <label>Opportunity Owner Changed</label>
+        </rules>
+    </decisions>
     <decisions>
         <name>Has_Open_Benchmark_Tasks</name>
         <label>Has Open Benchmark Tasks?</label>
         <locationX>182</locationX>
-        <locationY>947</locationY>
+        <locationY>1655</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes2</name>
@@ -43,7 +93,7 @@
         <name>Insert_Benchmark_Tasks</name>
         <label>Insert Benchmark Tasks?</label>
         <locationX>512</locationX>
-        <locationY>323</locationY>
+        <locationY>1031</locationY>
         <defaultConnector>
             <targetReference>Status</targetReference>
         </defaultConnector>
@@ -117,7 +167,7 @@
         <name>Status</name>
         <label>Status?</label>
         <locationX>512</locationX>
-        <locationY>623</locationY>
+        <locationY>1331</locationY>
         <defaultConnectorLabel>Other</defaultConnectorLabel>
         <rules>
             <name>Set_to_Incomplete</name>
@@ -156,6 +206,21 @@
     <environments>Default</environments>
     <interviewLabel>Service - After Update {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Service - After Update</label>
+    <loops>
+        <description>Loop through child Benchmark records. The records will be updated and added to a collection to update.</description>
+        <name>Loop_Through_Benchmarks</name>
+        <label>Loop Through Benchmarks</label>
+        <locationX>380</locationX>
+        <locationY>539</locationY>
+        <collectionReference>Get_Open_Child_Benchmark_Records</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Set_Benchmark_Owner_to_Opportunity_Owner</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Open_Child_Benchmarks</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -179,14 +244,14 @@
         <name>Delete_Open_Benchmark_Tasks</name>
         <label>Delete Open Benchmark Tasks</label>
         <locationX>50</locationX>
-        <locationY>1055</locationY>
+        <locationY>1763</locationY>
         <inputReference>Get_Open_Benchmark_Tasks</inputReference>
     </recordDeletes>
     <recordLookups>
         <name>Get_Open_Benchmark_Tasks</name>
         <label>Get Open Benchmark Tasks</label>
         <locationX>182</locationX>
-        <locationY>731</locationY>
+        <locationY>1439</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Task_Count</targetReference>
@@ -210,11 +275,105 @@
         <object>Task</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <recordLookups>
+        <description>Get child Benchmark records that are NOT:
+• Pending
+• Paid
+• Closed
+• Rejected
+• Populated with a Submitted Date</description>
+        <name>Get_Open_Child_Benchmark_Records</name>
+        <label>Get Open Child Benchmark Records</label>
+        <locationX>380</locationX>
+        <locationY>431</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Benchmarks</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Paid</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Rejected</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Submitted_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>OwnerId</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>NOA_Submitted_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>MPR_Pending__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>MPR_Saved__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Benchmark__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <description>Update the open Child Benchmarks so their OwnerId matches the triggering Opportunity&apos;s OwnerId.</description>
+        <name>Update_Open_Child_Benchmarks</name>
+        <label>Update Open Child Benchmarks</label>
+        <locationX>380</locationX>
+        <locationY>839</locationY>
+        <connector>
+            <targetReference>Insert_Benchmark_Tasks</targetReference>
+        </connector>
+        <inputReference>Collection_Benchmarks_To_Update</inputReference>
+    </recordUpdates>
     <start>
         <locationX>386</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Insert_Benchmark_Tasks</targetReference>
+            <targetReference>Did_Opportunity_Owner_Change</targetReference>
         </connector>
         <object>Opportunity</object>
         <recordTriggerType>Update</recordTriggerType>
@@ -225,7 +384,7 @@
         <name>Insert_Benchmark_Tasks_Subflow</name>
         <label>Insert Benchmark Tasks Subflow</label>
         <locationX>380</locationX>
-        <locationY>431</locationY>
+        <locationY>1139</locationY>
         <connector>
             <targetReference>Status</targetReference>
         </connector>
@@ -243,6 +402,15 @@
             </value>
         </inputAssignments>
     </subflows>
+    <variables>
+        <description>A collection for storing Benchmark records to update.</description>
+        <name>Collection_Benchmarks_To_Update</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Benchmark__c</objectType>
+    </variables>
     <variables>
         <name>NumberOfOpenBenchmarkTasks</name>
         <dataType>Number</dataType>
