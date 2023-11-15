@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Owner_Change</fullName>
+    <active>true</active>
+    <description>Prevent Service Owner Email being changed when the MPR Saved ,  MPR Pending, NOA Submitted , Submitted Date is populated.</description>
+    <errorConditionFormula>AND(
+OR(
+  ISCHANGED( Service_Owner_email__c ),
+  ISCHANGED(OwnerId ) 
+), 
+OR( 
+  NOT(ISBLANK( MPR_Saved__c )), 
+  NOT(ISBLANK( MPR_Pending__c )) ,
+  NOT(ISBLANK(  NOA_Submitted_Date__c)) ,
+  NOT(ISBLANK(   Submitted_Date__c )),
+  TEXT(Status__c) = &apos;Paid&apos;,
+  TEXT(Status__c) = &apos;Pending&apos;,
+  TEXT(Status__c) = &apos;Closed&apos;,
+  TEXT(Status__c) = &apos;Rejected&apos;
+ )  
+)</errorConditionFormula>
+    <errorMessage>The service owner can&apos;t be changed when one of the following is true: The MPR Saved or MPR Pending or NOA Submitted Date or Submitted Date is populated OR the Status is Paid, Pending, Closed or Rejected.</errorMessage>
+</ValidationRule>
