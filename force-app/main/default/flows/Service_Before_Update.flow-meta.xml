@@ -4,7 +4,7 @@
     <decisions>
         <name>Set_Stabilization_Date</name>
         <label>Set Stabilization Date?</label>
-        <locationX>182</locationX>
+        <locationX>446</locationX>
         <locationY>1019</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
@@ -27,7 +27,7 @@
     <decisions>
         <name>Update_Status</name>
         <label>Update Status?</label>
-        <locationX>182</locationX>
+        <locationX>446</locationX>
         <locationY>287</locationY>
         <defaultConnector>
             <targetReference>Set_Stabilization_Date</targetReference>
@@ -48,6 +48,57 @@
             </connector>
             <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
             <label>In-Service</label>
+        </rules>
+        <rules>
+            <name>Incomplete</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Employment_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Laid off</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Employment_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Terminated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Employment_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Resigned</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Stage2</targetReference>
+            </connector>
+            <label>Incomplete</label>
+        </rules>
+        <rules>
+            <name>Outcome_Achieved</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Report_completed_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Report_completed_Date__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Stage3</targetReference>
+            </connector>
+            <label>Outcome Achieved</label>
         </rules>
     </decisions>
     <environments>Default</environments>
@@ -183,9 +234,41 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <recordUpdates>
+        <name>Update_Stage2</name>
+        <label>Update Stage</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <connector>
+            <targetReference>Set_Stabilization_Date</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Incomplete</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Stage3</name>
+        <label>Update Stage</label>
+        <locationX>578</locationX>
+        <locationY>395</locationY>
+        <connector>
+            <targetReference>Set_Stabilization_Date</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>StageName</field>
+            <value>
+                <stringValue>Outcome Achieved</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
         <name>Update_Transition_Employment_Outcome</name>
         <label>Update Transition/Employment Outcome</label>
-        <locationX>50</locationX>
+        <locationX>314</locationX>
         <locationY>1127</locationY>
         <inputAssignments>
             <field>Employment_Outcome_Date__c</field>
@@ -202,7 +285,7 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>56</locationX>
+        <locationX>320</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Update_Status</targetReference>
