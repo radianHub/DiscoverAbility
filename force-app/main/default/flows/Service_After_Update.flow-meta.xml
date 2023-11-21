@@ -5,7 +5,7 @@
         <name>Assign_Task_Count</name>
         <label>Assign Task Count</label>
         <locationX>182</locationX>
-        <locationY>1547</locationY>
+        <locationY>1655</locationY>
         <assignmentItems>
             <assignToReference>NumberOfOpenBenchmarkTasks</assignToReference>
             <operator>AssignCount</operator>
@@ -22,12 +22,19 @@
         <name>Set_Benchmark_Owner_to_Opportunity_Owner</name>
         <label>Set Benchmark Owner to Opportunity Owner</label>
         <locationX>468</locationX>
-        <locationY>647</locationY>
+        <locationY>755</locationY>
         <assignmentItems>
             <assignToReference>Loop_Through_Benchmarks.OwnerId</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>Loop_Through_Benchmarks.Service_Owner_email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Owner.Email</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -39,6 +46,23 @@
         </assignmentItems>
         <connector>
             <targetReference>Loop_Through_Benchmarks</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Set the IsRunning recursion check to true</description>
+        <name>Set_Is_Running_to_True</name>
+        <label>Set Is Running to True</label>
+        <locationX>380</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference>var_Boolean_IsRunning</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Open_Child_Benchmark_Records</targetReference>
         </connector>
     </assignments>
     <decisions>
@@ -61,8 +85,22 @@
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
+            <conditions>
+                <leftValueReference>$Record.OwnerId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>var_Boolean_IsRunning</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
             <connector>
-                <targetReference>Get_Open_Child_Benchmark_Records</targetReference>
+                <targetReference>Set_Is_Running_to_True</targetReference>
             </connector>
             <label>Opportunity Owner Changed</label>
         </rules>
@@ -71,7 +109,7 @@
         <name>Has_Open_Benchmark_Tasks</name>
         <label>Has Open Benchmark Tasks?</label>
         <locationX>182</locationX>
-        <locationY>1655</locationY>
+        <locationY>1763</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
         <rules>
             <name>Yes2</name>
@@ -93,7 +131,7 @@
         <name>Insert_Benchmark_Tasks</name>
         <label>Insert Benchmark Tasks?</label>
         <locationX>512</locationX>
-        <locationY>1031</locationY>
+        <locationY>1139</locationY>
         <defaultConnector>
             <targetReference>Status</targetReference>
         </defaultConnector>
@@ -167,7 +205,7 @@
         <name>Status</name>
         <label>Status?</label>
         <locationX>512</locationX>
-        <locationY>1331</locationY>
+        <locationY>1439</locationY>
         <defaultConnectorLabel>Other</defaultConnectorLabel>
         <rules>
             <name>Set_to_Incomplete</name>
@@ -211,7 +249,7 @@
         <name>Loop_Through_Benchmarks</name>
         <label>Loop Through Benchmarks</label>
         <locationX>380</locationX>
-        <locationY>539</locationY>
+        <locationY>647</locationY>
         <collectionReference>Get_Open_Child_Benchmark_Records</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
@@ -244,14 +282,14 @@
         <name>Delete_Open_Benchmark_Tasks</name>
         <label>Delete Open Benchmark Tasks</label>
         <locationX>50</locationX>
-        <locationY>1763</locationY>
+        <locationY>1871</locationY>
         <inputReference>Get_Open_Benchmark_Tasks</inputReference>
     </recordDeletes>
     <recordLookups>
         <name>Get_Open_Benchmark_Tasks</name>
         <label>Get Open Benchmark Tasks</label>
         <locationX>182</locationX>
-        <locationY>1439</locationY>
+        <locationY>1547</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Task_Count</targetReference>
@@ -285,7 +323,7 @@
         <name>Get_Open_Child_Benchmark_Records</name>
         <label>Get Open Child Benchmark Records</label>
         <locationX>380</locationX>
-        <locationY>431</locationY>
+        <locationY>539</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_Through_Benchmarks</targetReference>
@@ -327,13 +365,6 @@
             </value>
         </filters>
         <filters>
-            <field>OwnerId</field>
-            <operator>NotEqualTo</operator>
-            <value>
-                <elementReference>$Record.OwnerId</elementReference>
-            </value>
-        </filters>
-        <filters>
             <field>NOA_Submitted_Date__c</field>
             <operator>IsNull</operator>
             <value>
@@ -354,6 +385,20 @@
                 <booleanValue>true</booleanValue>
             </value>
         </filters>
+        <filters>
+            <field>OwnerId</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Opportunity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Benchmark__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -363,7 +408,7 @@
         <name>Update_Open_Child_Benchmarks</name>
         <label>Update Open Child Benchmarks</label>
         <locationX>380</locationX>
-        <locationY>839</locationY>
+        <locationY>947</locationY>
         <connector>
             <targetReference>Insert_Benchmark_Tasks</targetReference>
         </connector>
@@ -384,7 +429,7 @@
         <name>Insert_Benchmark_Tasks_Subflow</name>
         <label>Insert Benchmark Tasks Subflow</label>
         <locationX>380</locationX>
-        <locationY>1139</locationY>
+        <locationY>1247</locationY>
         <connector>
             <targetReference>Status</targetReference>
         </connector>
@@ -418,5 +463,16 @@
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <scale>0</scale>
+    </variables>
+    <variables>
+        <description>Recursion check to see if the flow is already running</description>
+        <name>var_Boolean_IsRunning</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
     </variables>
 </Flow>
