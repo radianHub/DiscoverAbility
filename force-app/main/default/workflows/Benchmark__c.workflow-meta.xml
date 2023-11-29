@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Congrats_letter</fullName>
+        <description>Congrats letter</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>rsatill@discoverability.org</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal/Congrats_email</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_alert_for_Change_of_IPE</fullName>
+        <description>Email alert for Change of IPE</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal/IPE_Amendment</template>
+    </alerts>
+    <alerts>
+        <fullName>Invoice_approved_inform_es</fullName>
+        <description>Invoice approved inform es</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Service_Owner_email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal/Invoice_approval</template>
+    </alerts>
+    <alerts>
+        <fullName>NOA_approval</fullName>
+        <description>NOA approval</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Service_Owner_email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal/NOA_approval</template>
+    </alerts>
+    <alerts>
+        <fullName>NOA_submitted_email</fullName>
+        <description>NOA submitted email</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Service_Owner_email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal/NOA_Submitted_Confirmation</template>
+    </alerts>
+    <alerts>
+        <fullName>NOA_submitted_into_REBA_an_email_alert_to_ES</fullName>
+        <description>NOA submitted into REBA an email alert to ES</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal/NOA_Submitted_Confirmation</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Payment_45_Day_Benchmark</fullName>
+        <field>Amount__c</field>
+        <formula>1509.00</formula>
+        <name>Payment 45 Day Benchmark</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_90_Day_Benchmark</fullName>
+        <field>Amount__c</field>
+        <formula>2415.00</formula>
+        <name>Payment 90 Day Benchmark</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_DBS_Employment_outcome</fullName>
+        <field>Amount__c</field>
+        <formula>6000.00</formula>
+        <name>Payment DBS Employment outcome</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_DBS_Placement</fullName>
+        <field>Amount__c</field>
+        <formula>1500.00</formula>
+        <name>Payment DBS Placement</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_DBS_Stabilization</fullName>
+        <field>Amount__c</field>
+        <formula>1500.00</formula>
+        <name>Payment DBS Stabilization</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Date_of_placement</fullName>
+        <field>Amount__c</field>
+        <formula>1509.00</formula>
+        <name>Payment Date of placement</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Employment_Outcome</fullName>
+        <field>Amount__c</field>
+        <formula>2668.00</formula>
+        <name>Payment Employment Outcome</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_ICP_Date</fullName>
+        <field>Amount__c</field>
+        <formula>1334.00</formula>
+        <name>Payment ICP Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_OJT_Final_report</fullName>
+        <field>Amount__c</field>
+        <formula>653.00</formula>
+        <name>Payment OJT Final report</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Placement_Date</fullName>
+        <field>Amount__c</field>
+        <formula>1334.00</formula>
+        <name>Payment Placement Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Plan_Agreement</fullName>
+        <field>Amount__c</field>
+        <formula>980.00</formula>
+        <name>Payment Plan &amp; Agreement</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Pre_placement_training</fullName>
+        <field>Amount__c</field>
+        <formula>302</formula>
+        <name>Payment Pre placement training</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Stabilization</fullName>
+        <field>Amount__c</field>
+        <formula>1779.00</formula>
+        <name>Payment Stabilization</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Transition</fullName>
+        <field>Amount__c</field>
+        <formula>1779.00</formula>
+        <name>Payment Transition</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Vocational_Evaluation</fullName>
+        <field>Amount__c</field>
+        <formula>849.00</formula>
+        <name>Payment Vocational Evaluation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Payment_Work_Site_Evaluation</fullName>
+        <field>Amount__c</field>
+        <formula>1485</formula>
+        <name>Payment Work Site Evaluation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Alert IPE Amendment</fullName>
+        <actions>
+            <name>Email_alert_for_Change_of_IPE</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>IPE_Amendment_Pending__c  = TRUE</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Congrats letter 6%2E2015</fullName>
+        <actions>
+            <name>Congrats_letter</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Benchmark__c.NOA_Submitted_Date__c</field>
+            <operation>greaterThan</operation>
+            <value>10/10/2013</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Date of Placement</value>
+        </criteriaItems>
+        <description>When an NOA is submitted (after IPE is ammended) congrats letter can go out.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Invoice approved test</fullName>
+        <actions>
+            <name>Invoice_approved_inform_es</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Benchmark__c.Invoice_Approved_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Invoice approved test 321</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>NOA approval</fullName>
+        <actions>
+            <name>NOA_approval</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Benchmark__c.NOA_Approved_Date__c</field>
+            <operation>greaterThan</operation>
+            <value>10/10/2013</value>
+        </criteriaItems>
+        <description>When an NOA is approved for payment, an email alert will be sent to record owner.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment 45 Day Benchmark</fullName>
+        <actions>
+            <name>Payment_45_Day_Benchmark</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>45 Day</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment 90 Day Benchmark</fullName>
+        <actions>
+            <name>Payment_90_Day_Benchmark</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>90 Day</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment DBS Employment outcome</fullName>
+        <actions>
+            <name>Payment_DBS_Employment_outcome</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>DBS Employment outcome</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment DBS Placement</fullName>
+        <actions>
+            <name>Payment_DBS_Placement</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>DBS Placement</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment DBS Stabilization</fullName>
+        <actions>
+            <name>Payment_DBS_Stabilization</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>DBS Stabilization</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Date of placement</fullName>
+        <actions>
+            <name>Payment_Date_of_placement</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Date of Placement</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Employment Outcome</fullName>
+        <actions>
+            <name>Payment_Employment_Outcome</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Employment Outcome</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment ICP Date</fullName>
+        <actions>
+            <name>Payment_ICP_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Individual Career Plan</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment OJT Final report</fullName>
+        <actions>
+            <name>Payment_OJT_Final_report</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Final Report</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Placement Date</fullName>
+        <actions>
+            <name>Payment_Placement_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Placement</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Plan %26 Agreement</fullName>
+        <actions>
+            <name>Payment_Plan_Agreement</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>OJT Plan/Agreement</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Pre placement training</fullName>
+        <actions>
+            <name>Payment_Pre_placement_training</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Pre-placement class</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Stabilization</fullName>
+        <actions>
+            <name>Payment_Stabilization</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Stabilization</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Transition</fullName>
+        <actions>
+            <name>Payment_Transition</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Transition</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Vocational Evaluation</fullName>
+        <actions>
+            <name>Payment_Vocational_Evaluation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Vocational Evaluation</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment Work Site Evaluation</fullName>
+        <actions>
+            <name>Payment_Work_Site_Evaluation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Benchmark__c.Benchmark_Name__c</field>
+            <operation>equals</operation>
+            <value>Work site Evaluation</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Payment overdue alert</fullName>
+        <active>false</active>
+        <description>An email will be generated when an invoice for a vocational evaluation is submitted and payment is overdue.</description>
+        <formula>TODAY ( )   &gt;=    Invoice_Submitted_Date__c  + 1 &amp;&amp; ( ISBLANK( Payment_Received_Date__c )) &amp;&amp;  ISPICKVAL( Benchmark_Name__c, &apos;Vocational Evaluation&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <offsetFromField>Benchmark__c.CreatedDate</offsetFromField>
+            <timeLength>2</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>VE overdue payment</fullName>
+        <active>false</active>
+        <description>An email will be generated when an invoice for a vocational evaluation is submitted and payment is overdue.</description>
+        <formula>TODAY ( )   &gt;=    Invoice_Submitted_Date__c  + 1 &amp;&amp; ( ISBLANK( Payment_Received_Date__c )) &amp;&amp;  ISPICKVAL( Benchmark_Name__c, &apos;Vocational Evaluation&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <offsetFromField>Benchmark__c.Invoice_Submitted_Date__c</offsetFromField>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+</Workflow>
