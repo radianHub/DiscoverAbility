@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Employment_Services</fullName>
+    <active>true</active>
+    <label>Employment Service</label>
+    <picklistValues>
+        <picklist>Benchmark_Name__c</picklist>
+        <values>
+            <fullName>45 Day</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>90 Day</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Date of Placement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Job Coaching Hours</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OJT Final Report</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OJT Plan%2FAgreement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Observation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pre-placement class</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Profile</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reimbursed expenses</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Active Authorization</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Created</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Requested</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
